@@ -192,3 +192,4 @@ C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.pdb
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.genruntimeconfig.cache
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ref\ECommerce.dll
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
