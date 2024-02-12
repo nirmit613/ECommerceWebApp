@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-start mr-3 mt-3" (click)="navigateToDashboard()">
+  <button class="btn btn-light">
+    <i class="fa fa-arrow-left mr-2"></i> Back to Dashboard
+  </button>
+</div>
+<div class="container d-flex justify-content-center">
+  <h3 class="mb-4 mt-4 content">Users List</h3>
+</div>
+<div class="container">
+  <table class="table table-bordered text-center">
+    <thead class="table-primary">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>MobileNumber</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of usersList">
+      <tr>
+        <td>{{ user.name | titlecase }}</td>
+        <td>{{ user.email | titlecase }}</td>
+        <td>{{ user.mobileNumber }}</td> 
+        <td>{{ user.role | titlecase }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

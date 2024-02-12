@@ -20,7 +20,9 @@ namespace ECommerce.Models.Repository
         #region Methods
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products.ToList();
+            return _context.Products.Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
+            .ToList();
         }
         public Product GetProductById(int id)
         {
@@ -45,7 +47,7 @@ namespace ECommerce.Models.Repository
                 existingProduct.ProductPhotoUrl = product.ProductPhotoUrl;
                 existingProduct.Quantity = product.Quantity;
                 existingProduct.Price = product.Price;
-                existingProduct.CategoryId = product.CategoryId;
+                existingProduct.ProductCategories = product.ProductCategories;
 
                 _context.Entry(existingProduct).State = EntityState.Modified;
             }

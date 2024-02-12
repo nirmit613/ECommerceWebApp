@@ -10,14 +10,9 @@ const routes: Routes = [
     component: AuthWrapperComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'signup',
-        component: SignupComponent,
-      },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
+      { path: '**', redirectTo: 'login' } 
     ],
   },
 ];

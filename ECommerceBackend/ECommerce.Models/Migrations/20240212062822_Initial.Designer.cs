@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Models.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240209051533_Initial")]
+    [Migration("20240212062822_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -127,9 +127,6 @@ namespace ECommerce.Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -147,9 +144,30 @@ namespace ECommerce.Models.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerce.Models.Models.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Models.ProductRating", b =>
@@ -268,7 +286,7 @@ namespace ECommerce.Models.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ECommerce.Models.Models.Product", b =>
+            modelBuilder.Entity("ECommerce.Models.Models.ProductCategory", b =>
                 {
                     b.HasOne("ECommerce.Models.Models.Category", "Category")
                         .WithMany()
@@ -276,7 +294,15 @@ namespace ECommerce.Models.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("ECommerce.Models.Models.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Models.ProductRating", b =>
@@ -296,6 +322,11 @@ namespace ECommerce.Models.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ECommerce.Models.Models.Product", b =>
+                {
+                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }

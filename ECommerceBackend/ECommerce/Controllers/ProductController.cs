@@ -31,13 +31,18 @@ namespace ECommerce.Controllers
         {
             return Ok(_productService.GetProducts());
         }
+        [HttpGet("Categories")]
+        public IActionResult GetCategories()
+        {
+            return Ok(_productService.GetCategories());
+        }
         [HttpGet("id")]
         public IActionResult GetProductById(int id)
         {
             return Ok(_productService.GetProductById(id));
         }
         [HttpPost("product")]
-        public IActionResult AddProduct(AddProductDTO product)
+        public IActionResult AddProduct([FromForm]AddProductDTO product)
         {
 
             return Ok(_productService.AddProduct(product));

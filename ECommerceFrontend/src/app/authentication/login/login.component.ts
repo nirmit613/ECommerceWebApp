@@ -51,7 +51,7 @@ export class LoginComponent {
           console.log(response.role);
           const data = JSON.stringify(response);
           localStorage.setItem('userData', data);
-          this.toast.success({detail:"Success Message",summary:"You are logged in successfully!!",duration:3000})
+          this.toast.success({detail:"Success Message",summary:"You are logged in successfully!!",duration:3000});
           this.router.navigateByUrl('auth/signup');
         },
         error: () => {

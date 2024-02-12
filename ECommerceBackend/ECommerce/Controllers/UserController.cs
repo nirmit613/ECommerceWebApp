@@ -7,7 +7,7 @@ namespace ECommBackend.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UserController : ControllerBase
     {
         #region Fields

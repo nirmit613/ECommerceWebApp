@@ -12,7 +12,7 @@ namespace ECommerce.Services.DTO
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "product photo URL is required")]
-        public string ProductPhotoUrl { get; set; }
+        public IFormFile ProductPhotoUrl { get; set; }
 
         [Required(ErrorMessage = "Quantity is required")]
         [Range(0, int.MaxValue, ErrorMessage = "Quantity must be a positive integer")]
@@ -21,7 +21,6 @@ namespace ECommerce.Services.DTO
         [Required(ErrorMessage = "Price is required")]
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive number")]
         public double Price { get; set; }
-
-        public int CategoryId { get; set; }
+        public List<int> ProductCategories { get; set; }
     }
 }

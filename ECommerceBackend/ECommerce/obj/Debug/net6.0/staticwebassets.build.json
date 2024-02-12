@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "EJpu9ThlS0MOrKyywQ7byR859q7mY1nZaFX4f3Q27f0=",
+  "Hash": "WLawA8s3FKDlk7eyjfz8KHDYOpBN+hgKftqat1AAElg=",
   "Source": "ECommerce",
   "BasePath": "_content/ECommerce",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ECommerce\\wwwroot",
+      "Source": "ECommerce",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\81140eb3-9426-4170-8bc6-9bde2446464d.jfif",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "ProductImage/81140eb3-9426-4170-8bc6-9bde2446464d.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\81140eb3-9426-4170-8bc6-9bde2446464d.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "ProductImage/c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\eb47eb24-752f-4d64-b32d-f5565e80e7ae.jfif",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "ProductImage/eb47eb24-752f-4d64-b32d-f5565e80e7ae.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\eb47eb24-752f-4d64-b32d-f5565e80e7ae.jfif"
+    }
+  ]
 }
