@@ -18,7 +18,7 @@ export class UserListComponent {
     this.getUsers();
   }
 
-  public getUsers(): void {;
+  public getUsers(): void {
     this.userService.getUsers().subscribe({
       next: (res) => {
         console.log(res)

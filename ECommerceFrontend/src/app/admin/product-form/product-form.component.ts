@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgToastService } from 'ng-angular-popup';
@@ -12,11 +12,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent {
+  imageUrl: any;
   public productCategoriesArray!: FormArray;
   public isEditMode!: boolean;
   public addProductForm!: FormGroup;
   public quantityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   public productCategories!:ICategories[];
+  public selectedCategories: number[] = [];
 
   constructor(
     private productService: ProductService,private toast:NgToastService,
@@ -33,13 +35,17 @@ export class ProductFormComponent {
   initializeForm(): void {
     this.addProductForm = new FormGroup({
       id: new FormControl(this.data.product?.id ?? null),
-      productName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      productPhotoUrl: new FormControl('', Validators.required),
-      quantity: new FormControl(1, [Validators.required, Validators.min(0)]),
-      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      productName: new FormControl(this.data.product.productName, Validators.required),
+      productPhotoUrl: new FormControl(this.data.product.productPhotoUrl, Validators.required),
+      quantity: new FormControl(this.data.product?.quantity ?? null),
+      price: new FormControl(this.data.product.price, Validators.required),
       productCategories: new FormArray([])
     });
     this.getCategories();
+  }
+  
+  public isSelected(categoryId:any):boolean{
+    return this.productCategories.includes(categoryId);
   }
   public getCategories(){
     return this.productService.getCategories().subscribe({next:(res)=>{
@@ -49,7 +55,7 @@ export class ProductFormComponent {
   public addProduct(){
     this.dialogRef.close(this.addProductForm.value);
   }
-  public onEdiEmployee() {
+  public onEditProduct() {
     console.log('Form Values on Update:', this.addProductForm.value);
     this.dialogRef.close(this.addProductForm.value);
   }
@@ -57,14 +63,12 @@ export class ProductFormComponent {
     this.dialogRef.close();
   }
   toggleCategorySelection(categoryId: number): void {
-    if (this.productCategoriesArray) {
-      const index = this.productCategoriesArray.value.indexOf(categoryId);
-      if (index === -1) {
-        this.productCategoriesArray.push(new FormControl(categoryId));
-      } else {
-        this.productCategoriesArray.removeAt(index);
-      }
+    const index = this.selectedCategories.indexOf(categoryId);
+    if (index === -1) {
+      this.selectedCategories.push(categoryId);
+    } else {
+      this.selectedCategories.splice(index, 1);
     }
-    
+    this.addProductForm.setControl('productCategories', new FormArray(this.selectedCategories.map(id => new FormControl(id))));
   }
 }

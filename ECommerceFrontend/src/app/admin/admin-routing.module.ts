@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
     ]
   },
   {path:'users',component:UserListComponent},
-  {path:'products',component:ProductsComponent}
+  {path:'products',component:ProductsComponent},
+  {path:'orders',component:OrdersComponent}
 ];
 
 @NgModule({

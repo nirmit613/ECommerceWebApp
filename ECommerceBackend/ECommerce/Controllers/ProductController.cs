@@ -58,7 +58,6 @@ namespace ECommerce.Controllers
             return Ok(_productService.DeleteProduct(id));
         }
 
-
         #endregion
     }
 }

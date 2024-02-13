@@ -5,10 +5,6 @@ namespace ECommerce.Services.Interfaces
 {
     public interface IProductService
     {
-
-        //IEnumerable<Category> GetCategories();
-        //IEnumerable<ProductCategory> GetProductsCategories();
-        //Category GetCategoryById(int id);
         ResponseDTO GetProducts();
         ResponseDTO GetProductById(int id);
         ResponseDTO AddProduct(AddProductDTO product);

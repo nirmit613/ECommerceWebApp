@@ -39,40 +39,39 @@ export class ProductsComponent {
     };
     image.src = base64String;
   }
-public addProduct():void{
-  let product:IProduct = {
-    id: 0 ,
-    productName: '',
-    productPhotoUrl:'',
-    price:0,
-    productCategories:{
-      categoryId:0,
-      category:{
-        categoryName:''
+  public addProduct(): void {
+    let product:IProduct = {
+      id:0,
+      productName:'',
+      productPhotoUrl:'',
+      price:0,
+      quantity:0,
+      productCategories:[],
+
+    };
+    const dialogRef = this.dialog.open(ProductFormComponent, {
+      data: { product: product, mode: 'add' },
+      width: '50%',
+    });
+  
+    dialogRef.afterClosed().subscribe({
+      
+      next: (res) => {
+        console.log("AddData result:", res);
+        if (res != null) {
+          this.productService.addProduct({
+            id: res.id,
+            productName: res.productName,
+            productPhotoUrl: res.productPhotoUrl,
+            price: res.price,
+            quantity:res.quantity,
+            productCategories: res.productCategories 
+          }).subscribe(() => {
+            this.getProducts();
+          });
+        }
       }
-    },
-  };
-  const dialogRef = this.dialog.open(ProductFormComponent, {
-    data: { product: product, mode: 'add' },
-    width: '50%',
-  });
-  dialogRef.afterClosed().subscribe({
-    next:(res)=>{console.log(res);
-    if(res !=null){
-      debugger
-      this.productService.addProduct({
-        id:res.id,
-        productName:res.productName,
-        productPhotoUrl:res.productPhotoUrl,
-        price:res.price,
-        productCategories:res.productCategories.categoryId
-      }).subscribe({
-        next:()=>{
-          this.getProducts();
-        },
-      });
-    }}
-  });
+    });
   }
 }
  

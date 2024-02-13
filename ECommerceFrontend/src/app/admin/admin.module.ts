@@ -8,6 +8,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminDashboardComponent,
     UserListComponent,
     ProductsComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

@@ -19,5 +19,6 @@ namespace ECommerce.Models.Models
         [Required(ErrorMessage = "Total amount is required")]
         [Range(0, double.MaxValue, ErrorMessage = "Total amount must be a non-negative number")]
         public double TotalAmount { get; set; }
+        public string Status { get; set; }
     }
 }

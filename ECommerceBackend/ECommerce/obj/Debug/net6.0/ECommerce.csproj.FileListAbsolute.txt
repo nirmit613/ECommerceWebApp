@@ -95,12 +95,6 @@ E:\Codility\ECommerce\ECommerce\obj\Debug\net6.0\refint\ECommerce.dll
 E:\Codility\ECommerce\ECommerce\obj\Debug\net6.0\ECommerce.pdb
 E:\Codility\ECommerce\ECommerce\obj\Debug\net6.0\ECommerce.genruntimeconfig.cache
 E:\Codility\ECommerce\ECommerce\obj\Debug\net6.0\ref\ECommerce.dll
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.csproj.AssemblyReference.cache
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.AssemblyInfoInputs.cache
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.AssemblyInfo.cs
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\appsettings.json
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\ECommerce.staticwebassets.runtime.json
@@ -179,7 +173,13 @@ C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\ECommerce.Services.dll
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\ECommerce.Models.pdb
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\bin\Debug\net6.0\ECommerce.Services.pdb
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.AssemblyInfo.cs
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\ECommerce.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\staticwebassets\msbuild.ECommerce.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\staticwebassets\msbuild.build.ECommerce.props
 C:\Users\Lenovo\Desktop\ECommerceWebApp\ECommerceBackend\ECommerce\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ECommerce.props
