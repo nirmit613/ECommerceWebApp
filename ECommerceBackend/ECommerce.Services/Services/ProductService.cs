@@ -137,7 +137,7 @@ namespace ECommerce.Services.Services
                 {
                     response.Status = 200;
                     response.Message = "Product added successfully";
-                    response.Data = productData; // Return the added product DTO
+                    response.Data = productData;
                 }
                 else
                 {

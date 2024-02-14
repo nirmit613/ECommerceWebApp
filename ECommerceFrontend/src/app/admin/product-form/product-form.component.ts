@@ -19,6 +19,7 @@ export class ProductFormComponent {
   public quantityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   public productCategories!:ICategories[];
   public selectedCategories: number[] = [];
+  file:any;
 
   constructor(
     private productService: ProductService,private toast:NgToastService,
@@ -53,7 +54,45 @@ export class ProductFormComponent {
     }})
   }
   public addProduct(){
-    this.dialogRef.close(this.addProductForm.value);
+    // debugger
+    let data=this.addProductForm.value;
+  //  this.dialogRef.afterClosed().subscribe({
+  //     next: (res) => {
+        console.log("Add Data result:", data);
+  //       if (res != null) {
+          // debugger
+
+          let formdata=new FormData();
+          formdata.append("modal",JSON.stringify(this.addProductForm.value));
+          formdata.append("file",JSON.stringify(this.file));
+          // formdata.append("file",this.addProductForm.value);
+
+          this.productService.addProduct(formdata
+            // id: res.id,
+            // productName: res.productName,
+            // productPhotoUrl: res.productPhotoUrl,
+            // price: res.price,
+            // quantity:res.quantity,
+            // productCategories: res.productCategories 
+          ).subscribe(res=>{
+            this.dialogRef.close(this.addProductForm.value);
+            this.file=null;
+          });
+    //     }
+    //   }
+    // });
+   
+  }
+  onFileSelected(event: any): void {
+    const fileInput = event.target as HTMLInputElement;
+    const file = fileInput.files?.[0];
+    if (file) {
+      // let formdata=new FormData();
+      // formdata.append("file",file);
+      this.file=file;
+      this.addProductForm.patchValue({ productPhotoUrl: file });
+
+    }
   }
   public onEditProduct() {
     console.log('Form Values on Update:', this.addProductForm.value);

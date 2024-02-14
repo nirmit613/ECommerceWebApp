@@ -32,18 +32,11 @@ export class ProductsComponent {
   public  navigateToDashboard(): void {
     this.router.navigate(['/admin/dashboard']);
   }
-  public convertImageToBase64(base64String: string): void {
-    const image = new Image();
-    image.onload = () => {
-      console.log(image.src); 
-    };
-    image.src = base64String;
-  }
-  public addProduct(): void {
+public addProduct(): void {
     let product:IProduct = {
       id:0,
       productName:'',
-      productPhotoUrl:'',
+      productPhotoUrl: null,
       price:0,
       quantity:0,
       productCategories:[],
@@ -57,8 +50,9 @@ export class ProductsComponent {
     dialogRef.afterClosed().subscribe({
       
       next: (res) => {
-        console.log("AddData result:", res);
+        console.log("Add Data result:", res);
         if (res != null) {
+          // debugger
           this.productService.addProduct({
             id: res.id,
             productName: res.productName,

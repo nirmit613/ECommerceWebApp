@@ -11,14 +11,16 @@ namespace ECommerce.Services.Services
     {
         #region Fields 
         private readonly IOrderRepository _orderRepository;
+        private readonly ICartRepository _cartRepository;
         private readonly IMapper _mapper;
         #endregion
 
         #region Constructors
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, ICartRepository cartRepository)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _cartRepository = cartRepository;
         }
         #endregion
 
@@ -70,22 +72,131 @@ namespace ECommerce.Services.Services
         }
         public ResponseDTO CancelOrder(int orderId)
         {
-            throw new NotImplementedException();
+            var response = new ResponseDTO();
+            try
+            {
+                var order = _orderRepository.GetOrderById(orderId); 
+                if (order == null)
+                {
+                    response.Status = 404;
+                    response.Message = "Order not found";
+                    return response;
+                }
+                var cancelOrder = _orderRepository.CancelOrder(_mapper.Map<Order>(order));
+                if (cancelOrder)
+                {
+                    response.Status = 204;
+                    response.Message = "Order cancelled successfully";
+                }
+                else
+                {
+                    response.Status = 400;
+                    response.Message = "Not Updated";
+                    response.Error = "Could not cancel order"; ;
+
+                }
+
+            }
+            catch(Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
         }
 
         public ResponseDTO CompleteOrder(int orderId)
         {
-            throw new NotImplementedException();
+            var response = new ResponseDTO();
+            try
+            {
+                var order = _orderRepository.GetOrderById(orderId);
+                if (order == null)
+                {
+                    response.Status = 404;
+                    response.Message = "Order not found";
+                    return response;
+                }
+                var completeOrder = _orderRepository.CompleteOrder(_mapper.Map<Order>(order));
+                if (completeOrder)
+                {
+                    response.Status = 204;
+                    response.Message = "Order Completed successfully";
+                }
+                else
+                {
+                    response.Status = 400;
+                    response.Message = "Not Updated";
+                    response.Error = "Could not complete order"; ;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
         }
 
         public ResponseDTO DeleteOrder(int orderId)
         {
-            throw new NotImplementedException();
+            var response = new ResponseDTO();
+            try
+            {
+                var orderById = _orderRepository.GetOrderById(orderId);
+                if (orderById == null)
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "Order not found";
+                    return response;
+                }
+                var deleteFlag = _orderRepository.DeleteOrder(orderById);
+                if (deleteFlag)
+                {
+                    response.Status = 204;
+                    response.Message = "Deleted";
+                }
+                else
+                {
+                    response.Status = 400;
+                    response.Message = "Not Deleted";
+                    response.Error = "Could not delete order";
+                }
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
         }
 
         public ResponseDTO PlaceOrder(AddOrderDTO order)
         {
-            throw new NotImplementedException();
+            var response = new ResponseDTO();
+            try
+            {
+                var newOrder = _mapper.Map<Order>(order);
+                var orderId = _orderRepository.PlaceOrder(newOrder);
+                if (orderId > 0)
+                {
+                    response.Status = 200;
+                    response.Message = "Order place successfully";
+                    response.Data = newOrder;
+                }
+            }catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
         }
 
         #endregion

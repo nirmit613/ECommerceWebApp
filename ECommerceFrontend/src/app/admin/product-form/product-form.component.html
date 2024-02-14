@@ -7,12 +7,10 @@
         <span class="mt-2 error-message">Please enter product name.</span>
       </div>
     </div>
-    <div class="form-group mt-4">
-      <label class="mb-1" for="productPhotoUrl">Product Photo</label>
-      <input type="file" class="form-control" id="productPhotoUrl" formControlName="productPhotoUrl">
-      <div *ngIf="addProductForm.get('productPhotoUrl')?.invalid && addProductForm.get('productPhotoUrl')?.touched">
-        <span class="mt-2 error-message">Please choose a product photo.</span>
-      </div>
+    <div class="form-group">
+      <label for="productPhotoUrl">Product Photo</label>
+      <input type="file" class="form-control" id="productPhotoUrl" (change)="onFileSelected($event)" accept="image/*">
+      <img *ngIf="imageUrl" [src]="imageUrl" alt="Product Photo" class="preview-image">
     </div>
     <div class="form-group mt-4">
       <label class="mb-1" for="quantity">Quantity</label>

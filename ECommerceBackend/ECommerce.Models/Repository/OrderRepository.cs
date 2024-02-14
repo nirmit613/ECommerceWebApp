@@ -1,5 +1,6 @@
 ﻿using ECommerce.Models.Interfaces;
 using ECommerce.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Models.Repository
 {
@@ -38,16 +39,24 @@ namespace ECommerce.Models.Repository
 
         public bool CancelOrder(Order order)
         {
-            order.Status = "Cancelled";
-            _context.SaveChanges();
-            return true;
+            var orders = _context.Orders.Find(order.Id);
+            if (orders != null)
+            {
+                orders.Status = "Cancelled";
+                _context.Entry(orders).State = EntityState.Modified;
+            }
+            return _context.SaveChanges() > 0;
         }
 
         public bool CompleteOrder(Order order)
         {
-            order.Status = "Completed";
-            _context.SaveChanges();
-            return true;
+            var orders = _context.Orders.Find(order.Id);
+            if(orders != null)
+            {
+                orders.Status = "Completed";
+                _context.Entry(orders).State = EntityState.Modified;
+            }
+            return _context.SaveChanges() > 0;
         }
 
         public bool DeleteOrder(Order order)

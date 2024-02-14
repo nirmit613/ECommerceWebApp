@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "olQjcG82tuvCpLkfy9eQfkSbS6WkyBBskzclwGflD7CGUxQnyuFVNe7wduEvcNtRkQkB8fm1tQD70owPTo/YPQ==",
+  "dgSpecHash": "iKiYJ5dghRkae6UB9efswjdMyY6+A61YLo3tYJfZpgbnVGxIkBCvMxZ9p+ahPgFOgxQ1ETXsLDMaUYN+/A+M1Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\ECommerce.csproj",
   "expectedPackageFiles": [
@@ -48,7 +48,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
