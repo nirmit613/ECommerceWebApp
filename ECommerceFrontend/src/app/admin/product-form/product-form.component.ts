@@ -53,36 +53,62 @@ export class ProductFormComponent {
       this.productCategories = res.data;
     }})
   }
-  public addProduct(){
-    // debugger
-    let data=this.addProductForm.value;
-  //  this.dialogRef.afterClosed().subscribe({
-  //     next: (res) => {
-        console.log("Add Data result:", data);
-  //       if (res != null) {
-          // debugger
+  // public addProduct(){
+  //   // debugger
+  //   let data=this.addProductForm.value;
+  // //  this.dialogRef.afterClosed().subscribe({
+  // //     next: (res) => {
+  //       console.log("Add Data result:", data);
+  // //       if (res != null) {
+  //         // debugger
 
-          let formdata=new FormData();
-          formdata.append("modal",JSON.stringify(this.addProductForm.value));
-          formdata.append("file",JSON.stringify(this.file));
-          // formdata.append("file",this.addProductForm.value);
+  //         let formdata=new FormData();
+  //         formdata.append("modal",JSON.stringify(this.addProductForm.value));
+  //         formdata.append("file",JSON.stringify(this.file));
+  //         // formdata.append("file",this.addProductForm.value);
 
-          this.productService.addProduct(formdata
-            // id: res.id,
-            // productName: res.productName,
-            // productPhotoUrl: res.productPhotoUrl,
-            // price: res.price,
-            // quantity:res.quantity,
-            // productCategories: res.productCategories 
-          ).subscribe(res=>{
-            this.dialogRef.close(this.addProductForm.value);
-            this.file=null;
-          });
-    //     }
-    //   }
-    // });
+  //         this.productService.addProduct(formdata
+  //           // id: res.id,
+  //           // productName: res.productName,
+  //           // productPhotoUrl: res.productPhotoUrl,
+  //           // price: res.price,
+  //           // quantity:res.quantity,
+  //           // productCategories: res.productCategories 
+  //         ).subscribe(res=>{
+  //           this.dialogRef.close(this.addProductForm.value);
+  //           this.file=null;
+  //         });
+  //   //     }
+  //   //   }
+  //   // });
    
+  // }
+  public addProduct() {
+    const productData = this.addProductForm.value;
+    console.log("Product Data:", productData);
+    const formData = new FormData();
+    formData.append('productName', productData.productName);
+    formData.append('quantity', productData.quantity);
+    formData.append('price', productData.price);
+    productData.productCategories.forEach((categoryId: number) => {
+      formData.append('productCategories[]', categoryId.toString());
+    });
+    
+    formData.append('productPhotoUrl', this.file);
+    this.productService.addProduct(formData).subscribe({
+      next: (res: any) => {
+        console.log("Add Product Response:", res);
+        this.dialogRef.close(this.addProductForm.value);
+        this.file = null;
+      },
+      error: (err: any) => {
+        // Handle errors
+        console.error("Error:", err);
+        // Optionally, display an error message to the user
+      }
+    });
   }
+  
   onFileSelected(event: any): void {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];

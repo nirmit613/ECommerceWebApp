@@ -1,12 +1,24 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\216893c1-0144-4980-97d2-56d33419879e.jpg",
+      "PackagePath": "staticwebassets\\ProductImage\\216893c1-0144-4980-97d2-56d33419879e.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\56a81508-85d9-41ba-a988-2f9766c2315b.jpg",
+      "PackagePath": "staticwebassets\\ProductImage\\56a81508-85d9-41ba-a988-2f9766c2315b.jpg"
+    },
+    {
       "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\81140eb3-9426-4170-8bc6-9bde2446464d.jfif",
       "PackagePath": "staticwebassets\\ProductImage\\81140eb3-9426-4170-8bc6-9bde2446464d.jfif"
     },
     {
       "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg",
       "PackagePath": "staticwebassets\\ProductImage\\c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\e29fc6de-4010-45ea-8506-2b41ee06d50b.jfif",
+      "PackagePath": "staticwebassets\\ProductImage\\e29fc6de-4010-45ea-8506-2b41ee06d50b.jfif"
     },
     {
       "Id": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\eb47eb24-752f-4d64-b32d-f5565e80e7ae.jfif",

@@ -4,12 +4,6 @@ using ECommerce.Models.Models;
 using ECommerce.Services.DTO;
 using ECommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using ECommerce.Models.Repository;
-using Microsoft.IdentityModel.Tokens;
-using System.Net;
 
 namespace ECommerce.Services.Services
 {
