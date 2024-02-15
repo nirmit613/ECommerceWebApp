@@ -7,6 +7,7 @@ namespace ECommerce.Services.Interfaces
     {
         ResponseDTO GetProducts();
         ResponseDTO GetProductById(int id);
+        ResponseDTO GetProductsByCategoryId(int categoryId);
         ResponseDTO AddProduct(AddProductDTO product);
         ResponseDTO UpdateProduct(UpdateProductDTO updateProduct);
         ResponseDTO DeleteProduct(int id);

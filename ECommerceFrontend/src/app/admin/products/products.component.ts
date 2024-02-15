@@ -5,6 +5,7 @@ import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-products',
@@ -13,9 +14,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProductsComponent {
   public productList!:IProduct[];
+  public showAddButton:Boolean = false;
 
-  constructor(private productService:ProductService,private toast:NgToastService,private router:Router,public dialog: MatDialog,) {}
+
+  constructor(private productService:ProductService,private toast:NgToastService,private router:Router,public dialog: MatDialog,private authService:AuthenticationService) {}
   ngOnInit(): void {
+    this.checkUserRole();
     this.getProducts();
   }
   public getProducts():void{
@@ -29,6 +33,16 @@ export class ProductsComponent {
       },
     });
   }
+  
+  checkUserRole() {
+    if (this.authService.isAuthenticated()) {
+      const userRole = this.authService.getUserRole();
+      if (userRole === 'admin') {
+        this.showAddButton = true;
+      }
+    }
+  }
+  
   public  navigateToDashboard(): void {
     this.router.navigate(['/admin/dashboard']);
   }
@@ -51,19 +65,7 @@ public addProduct(): void {
       
       next: (res) => {
         console.log("Add Data result:", res);
-        if (res != null) {
-          // debugger
-          this.productService.addProduct({
-            id: res.id,
-            productName: res.productName,
-            productPhotoUrl: res.productPhotoUrl,
-            price: res.price,
-            quantity:res.quantity,
-            productCategories: res.productCategories 
-          }).subscribe(() => {
-            this.getProducts();
-          });
-        }
+        this.getProducts();
       }
     });
   }

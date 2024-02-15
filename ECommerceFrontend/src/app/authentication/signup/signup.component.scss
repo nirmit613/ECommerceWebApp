@@ -13,3 +13,13 @@ input.ng-invalid.ng-touched {
     top: 52%;
     transform: translateY(-50%);
   }
+  .login-link {
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Set text color */
+    font-weight: bold; /* Make text bold */
+  }
+  
+  .login-link:hover {
+    color: #0056b3; /* Change text color on hover */
+  }
+  

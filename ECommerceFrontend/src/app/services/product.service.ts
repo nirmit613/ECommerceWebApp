@@ -13,6 +13,9 @@ export class ProductService {
   public getProducts():Observable<any>{
     return this.http.get<any>(`${environment.baseUrl}products/Products`);
   }
+  public getProductsByCategoryId(categoryId: number): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`${environment.baseUrl}products/categoryId?categoryId=${categoryId}`);
+  }
 
   public addProduct(product:any):Observable<any>{
     return this.http.post(`${environment.baseUrl}products/product`,product);
@@ -20,5 +23,8 @@ export class ProductService {
 
   public getCategories():Observable<any>{
     return this.http.get(`${environment.baseUrl}products/Categories`);
+  }
+  public getOrders():Observable<any>{
+    return this.http.get<any>(`${environment.baseUrl}orders`);
   }
 }

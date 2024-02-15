@@ -23,6 +23,6 @@ import { OrdersComponent } from './orders/orders.component';
     CommonModule,
     AdminRoutingModule,RouterModule,FormsModule,ReactiveFormsModule
     
-  ]
+  ],exports:[ProductsComponent,AdminDashboardComponent]
 })
 export class AdminModule { }

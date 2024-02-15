@@ -4,19 +4,24 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
+import { LayoutComponent } from '../shared/layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminDashboardComponent,
+    component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'users', component: UserListComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'orders', component: OrdersComponent }
     ]
   },
-  {path:'users',component:UserListComponent},
-  {path:'products',component:ProductsComponent},
-  {path:'orders',component:OrdersComponent}
 ];
 
 @NgModule({

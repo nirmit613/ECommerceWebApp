@@ -74,6 +74,15 @@ namespace ECommerce.Models.Repository
         {
             return _context.Categories.FirstOrDefault(c => c.Id == id);
         }
+
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+        {
+            return _context.Products
+                .Include(p => p.ProductCategories)
+                .ThenInclude(pc => pc.Category)
+                .Where(p => p.ProductCategories.Any(pc => pc.CategoryId == categoryId))
+                .ToList();
+        }
         #endregion
     }
 }

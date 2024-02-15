@@ -11,3 +11,12 @@ input.ng-invalid.ng-touched {
     margin-top: 0.6rem;
     margin-left: 36rem;
   }
+  .login-link {
+    text-decoration: none; 
+    color: #007bff; 
+    font-weight: bold;
+  }
+  
+  .login-link:hover {
+    color: #0056b3; 
+  }

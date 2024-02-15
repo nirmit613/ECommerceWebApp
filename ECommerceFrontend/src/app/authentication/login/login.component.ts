@@ -16,6 +16,7 @@ export class LoginComponent {
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
   public loginForm!: FormGroup;
+  public showAddProductButton!:boolean;
 
   public patternForEmail: RegExp =
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})/;
@@ -50,9 +51,15 @@ export class LoginComponent {
           this.loginForm.reset();
           console.log(response.role);
           const data = JSON.stringify(response);
-          localStorage.setItem('userData', data);
+          localStorage.setItem('UserData', data);
+          if (response.role === 'admin') {
+            this.router.navigateByUrl('admin/dashboard');
+          } else {
+            this.router.navigateByUrl('cutomer/dashboard');
+          }
+          
           this.toast.success({detail:"Success Message",summary:"You are logged in successfully!!",duration:3000});
-          this.router.navigateByUrl('auth/signup');
+          
         },
         error: () => {
           this.toast.error({detail:"Error Message",summary:"email or password incorrect!!",duration:3000})

@@ -102,9 +102,7 @@ export class ProductFormComponent {
         this.file = null;
       },
       error: (err: any) => {
-        // Handle errors
         console.error("Error:", err);
-        // Optionally, display an error message to the user
       }
     });
   }
@@ -113,8 +111,6 @@ export class ProductFormComponent {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];
     if (file) {
-      // let formdata=new FormData();
-      // formdata.append("file",file);
       this.file=file;
       this.addProductForm.patchValue({ productPhotoUrl: file });
 

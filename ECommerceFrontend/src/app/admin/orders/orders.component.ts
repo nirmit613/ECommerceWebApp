@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { IOrder } from 'src/app/interfaces/order';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,7 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
-  constructor(private router:Router) {}
+  public orderList!:IOrder[];
+  constructor(private router:Router,private productService:ProductService,private toast:NgToastService) {}
+  ngOnInit(): void {
+    this.getOrders();
+  }
+  public getOrders():void{
+    this.productService.getOrders().subscribe({
+      next: (res) => {
+        console.log(res)
+        this.orderList = res.data;
+      },
+      error: (error) => {
+        this.toast.error({detail:"Error Message",summary:"Some error occur while fetching the data!!",duration:3000})
+      },
+    });
+  }
   public  navigateToDashboard(): void {
     this.router.navigate(['/admin/dashboard']);
   }

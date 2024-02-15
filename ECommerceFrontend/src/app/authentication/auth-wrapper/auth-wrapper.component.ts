@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-wrapper',
@@ -6,14 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth-wrapper.component.scss']
 })
 export class AuthWrapperComponent {
-  public header = [
-    {
-      title: 'Login',
-      link: '/auth/login',
-    },
-    {
-      title: 'SignUp',
-      link: 'signup',
-    },
-  ];
+  constructor(private router:Router){}
+ 
+  
+  public navigateToLandingPage(): void {
+    this.router.navigate(['/landing']);
+  }
 }

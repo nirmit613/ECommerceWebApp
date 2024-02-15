@@ -6,6 +6,7 @@ namespace ECommerce.Models.Interfaces
     {
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
+        IEnumerable<Product> GetProductsByCategoryId(int categoryId);
         int AddProduct(Product product);
         bool UpdateProduct(Product product);
         bool DeleteProduct(Product product);

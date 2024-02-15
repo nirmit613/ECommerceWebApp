@@ -42,14 +42,15 @@ namespace ECommerce.Controllers
         {
             return Ok(_productService.GetProductById(id));
         }
+        [HttpGet("categoryId")]
+        public IActionResult GetProductByCategoryId(int categoryId)
+        {
+            return Ok(_productService.GetProductsByCategoryId(categoryId));
+        }
         [HttpPost("product")]
         public IActionResult AddProduct([FromForm]AddProductDTO product)
         {
-            //var data = JsonConvert.DeserializeObject<AddProductDTO>(Request.Form["modal"][0]);
-           
-            //return Ok(_productService.AddProduct(new AddProductDTO()));
             return Ok(_productService.AddProduct(product));
-
         }
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDTO product)

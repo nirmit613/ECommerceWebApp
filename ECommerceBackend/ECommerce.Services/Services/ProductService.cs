@@ -73,8 +73,36 @@ namespace ECommerce.Services.Services
             }
             return response;
         }
+        public ResponseDTO GetProductsByCategoryId(int categoryId)
+        {
+            var response = new ResponseDTO();
+            try
+            {
+                var products = _productRepository.GetProductsByCategoryId(categoryId);
 
-        public  ResponseDTO AddProduct(AddProductDTO product)
+                if (products == null || !products.Any())
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "Products not found for the specified category ID";
+                    return response;
+                }
+                var productDTOs = _mapper.Map<List<Product>>(products);
+
+                response.Status = 200;
+                response.Message = "Ok";
+                response.Data = productDTOs;
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
+        }
+
+        public ResponseDTO AddProduct(AddProductDTO product)
         {
             var response = new ResponseDTO();
             try
