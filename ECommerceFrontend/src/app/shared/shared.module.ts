@@ -5,16 +5,22 @@ import { ProductsComponent } from '../admin/products/products.component';
 import { AdminModule } from '../admin/admin.module';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { CartComponent } from './cart/cart.component';
+import { FormsModule } from '@angular/forms';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 
 @NgModule({
   declarations: [
     LandingPageComponent,
-    LayoutComponent
+    LayoutComponent,
+    CartComponent,
+    MyOrdersComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AdminModule,
     RouterModule
   ],

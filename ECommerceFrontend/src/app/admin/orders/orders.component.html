@@ -1,14 +1,15 @@
-<div class="d-flex justify-content-start mr-3 mt-3" (click)="navigateToDashboard()">
+
+<!-- <div class="d-flex justify-content-start mr-3 mt-3" (click)="navigateToDashboard()">
     <button class="btn btn-light">
       <i class="fa fa-arrow-left mr-2"></i> Back to Dashboard
     </button>
-  </div>
+  </div> -->
 <div class="container d-flex justify-content-center">
     <h3 class="mt-5 mb-4 content">Customers Order List</h3>
   </div>
   <div class="container">
     <table class="table table table-bordered text-center">
-      <thead class="table-secondary">
+      <thead class="table-dark">
         <tr>
           <th>Order Number</th>
           <th>Total Price</th>
@@ -28,7 +29,7 @@
             'text-primary': order.status === 'InProgress'
           }">{{ order.status }}</td> 
           <td>
-            <button class="btn btn-primary m-1" [disabled]="order.status === 'Completed'">
+            <button class="btn btn-primary m-1" [disabled]="order.status === 'Completed' || order.status === 'Cancelled' ">
               <!-- (click)="updateEmployee(emp)" -->
               <i class="fa fa-pencil"></i>
             </button>

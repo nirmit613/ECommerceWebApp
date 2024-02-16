@@ -1,0 +1,51 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand">
+        <i class="fa-solid fa-shop" style="color: #c3c0c0;"></i> 
+        NCoreSoft Ecommerce
+    </a>
+    <a class="navbar-brand" style="cursor: pointer; font-size: medium;" (click)="navigateLanding()">
+        <i class="fas fa-sign-out-alt text-light"></i>
+        Back to Shopping
+    </a>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="cart-heading">My Orders</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div *ngIf="orders && orders.length" class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Total Amount</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of orders">
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.totalAmount | currency:'INR' }}</td>
+                            <td>{{ order.status }}</td>
+                            <td>
+                                <button (click)="cancelOrder(order.id)" *ngIf="order.status === 'InProgress'"  class="btn btn-danger btn-sm" >Cancel</button>
+                                <span *ngIf="order.status !== 'InProgress'" class="text-muted">Not cancellable</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!orders || orders.length === 0" class="text-center">
+                <h3>No orders found.</h3>
+                <i class="fas fa-box-open fa-5x text-muted"></i>
+            </div>
+        </div>
+    </div>
+</div>

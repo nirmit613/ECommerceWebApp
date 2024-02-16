@@ -26,7 +26,4 @@ export class OrdersComponent {
       },
     });
   }
-  public  navigateToDashboard(): void {
-    this.router.navigate(['/admin/dashboard']);
-  }
 }

@@ -7,6 +7,7 @@ namespace ECommerce.Services.Interfaces
     {
         ResponseDTO GetOrders();
         ResponseDTO GetOrderById(int id);
+        ResponseDTO GetOrderByUserId(int userId);
         ResponseDTO PlaceOrder(AddOrderDTO order);
         ResponseDTO CancelOrder(int orderId);
         ResponseDTO CompleteOrder(int orderId);

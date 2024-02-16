@@ -27,7 +27,10 @@ namespace ECommerce.Models.Repository
         {
             return _context.Orders.FirstOrDefault(o => o.Id == id);
         }
-
+        public IEnumerable<Order> GetOrderByUserId(int userId)
+        {
+            return _context.Orders.Include(o=>o.User).Where(o => o.UserId == userId).ToList();
+        }
         public int PlaceOrder(Order order)
         {
             order.OrderDate = DateTime.Now;

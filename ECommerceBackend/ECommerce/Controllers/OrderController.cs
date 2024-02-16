@@ -26,10 +26,15 @@ namespace ECommerce.Controllers
             return Ok(_orderService.GetOrders());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetOrderById(int id)
+        //[HttpGet("{id}")]
+        //public IActionResult GetOrderById(int id)
+        //{
+        //   return Ok(_orderService.GetOrderById(id));
+        //}
+        [HttpGet("{userId}")]
+        public IActionResult GetOrderByUserId(int userId)
         {
-           return Ok(_orderService.GetOrderById(id));
+            return Ok(_orderService.GetOrderByUserId(userId));
         }
 
         [HttpPost]

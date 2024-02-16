@@ -194,6 +194,33 @@ namespace ECommerce.Services.Services
             }
             return response;
         }
+
+        public ResponseDTO EmptyCartItems(int userId)
+        {
+            var response = new ResponseDTO();
+            try
+            {
+                var success = _cartRepository.EmptyCart(userId);
+                if (success)
+                {
+                    response.Status = 200;
+                    response.Message = "Cart emptied successfully.";
+                }
+                else
+                {
+                    response.Status = 500;
+                    response.Message = "Internal Server Error";
+                    response.Error = "Failed to empty cart.";
+                }
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
+        }
         #endregion
     }
 }

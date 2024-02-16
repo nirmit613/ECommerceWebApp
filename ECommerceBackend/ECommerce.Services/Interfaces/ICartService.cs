@@ -11,5 +11,6 @@ namespace ECommerce.Services.Interfaces
         ResponseDTO GetCartItemById(int cartItemId);
         ResponseDTO GetCartItem(int userId, int productId);
         ResponseDTO UpdateCartItem(UpdateCartItemDTO cartItem);
+        ResponseDTO EmptyCartItems(int userId);
     }
 }

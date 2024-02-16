@@ -50,11 +50,25 @@ namespace ECommerce.Models.Repository
         }
         public IEnumerable<CartItem> GetCartItemByUserId(int userId)
         {
-            return _context.CartItems.Where(item => item.UserId == userId).ToList();
+            return _context.CartItems.Include(d=>d.Product).Where(item => item.UserId == userId).ToList();
         }
         public CartItem GetCartItem(int userId, int productId)
         {
             return _context.CartItems.FirstOrDefault(item => item.UserId == userId && item.ProductId == productId);
+        }
+
+        public bool EmptyCart(int userId)
+        {
+            try
+            {
+                var cartItemsToRemove = _context.CartItems.Where(c => c.UserId == userId);
+                _context.CartItems.RemoveRange(cartItemsToRemove);
+                return _context.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         #endregion
     }

@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ICartItems } from 'src/app/interfaces/cart-items';
 
 @Component({
   selector: 'app-products',
@@ -42,7 +43,47 @@ export class ProductsComponent {
       }
     }
   }
-  
+  public addToCart(productId:number){
+    // debugger
+    if (!this.authService.isAuthenticated()) {
+      this.toast.warning({detail:"Warning Message",summary:"Please do login first to add product into cart!!",duration:4000})
+      this.router.navigate(['/auth/login']);
+    } else {
+      const userDataString = localStorage.getItem('UserData');
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      const userId = userData.id; 
+      
+      const cartItem: ICartItems = {
+        id: 0,
+        userId: userId,
+        productId: productId,
+        quantity: 1,
+        product:{
+          id:productId,
+          productName:'',
+          productPhotoUrl: null,
+          price:0,
+          quantity:0,
+          productCategories:[],
+
+        }
+      };
+
+      this.productService.addToCart(cartItem).subscribe(
+        () => {
+          this.toast.success({ detail: "Success Messege", summary: "Product added to the cart successfully!!!", duration: 3000 });
+          console.log('Product added to cart');
+        },
+        error => {
+          console.error('Error adding product to cart:', error);
+          this.toast.error({ detail: "Error Message", summary:"Failed to add the product to the cart." , duration: 3000 });
+        }
+      );
+    }
+    }
+
+  }
   public  navigateToDashboard(): void {
     this.router.navigate(['/admin/dashboard']);
   }

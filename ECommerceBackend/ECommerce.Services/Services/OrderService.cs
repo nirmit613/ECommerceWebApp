@@ -70,6 +70,32 @@ namespace ECommerce.Services.Services
             }
             return response;
         }
+        public ResponseDTO GetOrderByUserId(int userId)
+        {
+            var response = new ResponseDTO();
+            try
+            {
+                var orders = _orderRepository.GetOrderByUserId(userId);
+                if (orders == null || !orders.Any())
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "No orders found for the user";
+                    return response;
+                }
+
+                response.Status = 200;
+                response.Message = "Ok";
+                response.Data = orders;
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
+        }
         public ResponseDTO CancelOrder(int orderId)
         {
             var response = new ResponseDTO();

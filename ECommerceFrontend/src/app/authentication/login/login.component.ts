@@ -55,7 +55,7 @@ export class LoginComponent {
           if (response.role === 'admin') {
             this.router.navigateByUrl('admin/dashboard');
           } else {
-            this.router.navigateByUrl('cutomer/dashboard');
+            this.router.navigateByUrl('landing');
           }
           
           this.toast.success({detail:"Success Message",summary:"You are logged in successfully!!",duration:3000});

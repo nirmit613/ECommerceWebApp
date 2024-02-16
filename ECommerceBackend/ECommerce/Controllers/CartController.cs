@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
-    [Route("cart")]
+    [Route("api/cart")]
     [ApiController]
     //[Authorize]
     public class CartController : ControllerBase
@@ -43,6 +43,11 @@ namespace ECommerce.Controllers
         public IActionResult UpdateCart(UpdateCartItemDTO cartItem)
         {
             return Ok(_cartService.UpdateCartItem(cartItem));
+        }
+        [HttpDelete("empty/{userId}")]
+        public IActionResult EmptyCart(int userId)
+        {
+            return Ok(_cartService.EmptyCartItems(userId));
         }
         #endregion
 

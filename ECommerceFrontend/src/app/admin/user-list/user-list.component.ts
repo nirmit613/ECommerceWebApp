@@ -29,7 +29,7 @@ export class UserListComponent {
       },
     });
   }
-  public  navigateToDashboard(): void {
-    this.router.navigate(['/admin/dashboard']);
-  }
+  // public  navigateToDashboard(): void {
+  //   this.router.navigate(['/admin/dashboard']);
+  // }
 }

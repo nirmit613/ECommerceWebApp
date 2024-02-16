@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LandingPageComponent } from './shared/landing-page/landing-page.component';
+import { CartComponent } from './shared/cart/cart.component';
+import { MyOrdersComponent } from './shared/my-orders/my-orders.component';
 
 const routes: Routes = [
   {
@@ -10,6 +12,8 @@ const routes: Routes = [
     pathMatch:'full'
   },
   { path: 'landing', component: LandingPageComponent },
+  { path: 'landing/cart', component: CartComponent },
+  {path:'landing/my-orders',component:MyOrdersComponent},
   { path: 'landing/men', component: LandingPageComponent },
   { path: 'landing/women', component: LandingPageComponent },
   { path: 'landing/kids', component: LandingPageComponent },
