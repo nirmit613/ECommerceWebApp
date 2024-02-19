@@ -53,7 +53,7 @@ export class LoginComponent {
           const data = JSON.stringify(response);
           localStorage.setItem('UserData', data);
           if (response.role === 'admin') {
-            this.router.navigateByUrl('admin/dashboard');
+            this.router.navigateByUrl('admin/products');
           } else {
             this.router.navigateByUrl('landing');
           }

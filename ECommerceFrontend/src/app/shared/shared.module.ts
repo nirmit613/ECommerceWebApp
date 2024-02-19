@@ -11,12 +11,14 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 
+
 @NgModule({
   declarations: [
     LandingPageComponent,
     LayoutComponent,
     CartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    
   ],
   imports: [
     CommonModule,

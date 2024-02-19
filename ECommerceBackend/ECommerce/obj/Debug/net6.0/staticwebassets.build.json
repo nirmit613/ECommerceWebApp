@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sRb+vijIpwkX+R3I97QRA66gmeUq0NnNHz4WC9hKuiw=",
+  "Hash": "yMAODWL4bPHDnQ/WfdTg2BTJIp/bu9R3e8QLwOq9pNw=",
   "Source": "ECommerce",
   "BasePath": "_content/ECommerce",
   "Mode": "Default",
@@ -151,6 +151,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ProductImage\\81140eb3-9426-4170-8bc6-9bde2446464d.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\8f53559e-9c1e-4c9f-ad40-d6f8b391e1d4.jpg",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "ProductImage/8f53559e-9c1e-4c9f-ad40-d6f8b391e1d4.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\8f53559e-9c1e-4c9f-ad40-d6f8b391e1d4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\c20469de-3553-4d6d-a965-de1ab4962a31.jpeg",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "ProductImage/c20469de-3553-4d6d-a965-de1ab4962a31.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\c20469de-3553-4d6d-a965-de1ab4962a31.jpeg"
     },
     {
       "Identity": "C:\\Users\\Lenovo\\Desktop\\ECommerceWebApp\\ECommerceBackend\\ECommerce\\wwwroot\\ProductImage\\c6424e38-959d-4ed5-9acd-0c1974f9903e.jpeg",

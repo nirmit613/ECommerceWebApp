@@ -26,4 +26,17 @@ export class OrdersComponent {
       },
     });
   }
+  public updateOrderStatus(order:IOrder){
+    if (order.status === 'InProgress') {
+      this.productService.completeOrder(order.id).subscribe({
+        next: () => {
+          this.toast.success({detail:"Success Message",summary:"Order Status changed!!",duration:3000});
+          this.getOrders();
+        },
+        error: (error) => {
+          this.toast.error({detail:"Error message",summary:"Could not update status!!",duration:3000});
+        }
+      });
+    }
+  }
 }

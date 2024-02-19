@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -13,10 +12,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'products',
         pathMatch: 'full'
       },
-      { path: 'dashboard', component: AdminDashboardComponent },
+      // { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'users', component: UserListComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'orders', component: OrdersComponent }

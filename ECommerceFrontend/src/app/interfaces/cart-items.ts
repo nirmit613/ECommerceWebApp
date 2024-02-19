@@ -1,4 +1,5 @@
 import { IProduct } from "./product";
+import { IUser } from "./user";
 
 export interface ICartItems {
     id:number,
@@ -6,4 +7,5 @@ export interface ICartItems {
     productId:number,
     quantity:number
     product: IProduct;
+    user:IUser
 }

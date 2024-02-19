@@ -26,11 +26,6 @@ namespace ECommerce.Controllers
             return Ok(_orderService.GetOrders());
         }
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetOrderById(int id)
-        //{
-        //   return Ok(_orderService.GetOrderById(id));
-        //}
         [HttpGet("{userId}")]
         public IActionResult GetOrderByUserId(int userId)
         {
@@ -38,7 +33,7 @@ namespace ECommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult PlaceOrder(AddOrderDTO order)
+        public IActionResult PlaceOrder(List<AddOrderDTO> order)
         {
             return Ok(_orderService.PlaceOrder(order));
         }

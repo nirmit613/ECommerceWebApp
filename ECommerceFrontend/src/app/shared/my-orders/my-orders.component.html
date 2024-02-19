@@ -24,6 +24,9 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Order ID</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Total Amount</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -32,10 +35,20 @@
                     <tbody>
                         <tr *ngFor="let order of orders">
                             <td>{{ order.id }}</td>
+                            <td>
+                                <div class="product-info">
+                                    <img *ngIf="order.product.productPhotoUrl" [src]="order.product.productPhotoUrl" alt="{{ order.product.productName }}" class="product-image">
+                                    <div class="product-details">
+                                        <p class="product-name">{{ order.product.productName }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ order.quantity }}</td>
+                            <td>{{ order.product.price | currency:'INR' }}</td>
                             <td>{{ order.totalAmount | currency:'INR' }}</td>
                             <td>{{ order.status }}</td>
                             <td>
-                                <button (click)="cancelOrder(order.id)" *ngIf="order.status === 'InProgress'"  class="btn btn-danger btn-sm" >Cancel</button>
+                                <button (click)="cancelOrder(order.id)" *ngIf="order.status === 'InProgress'" class="btn btn-danger btn-sm">Cancel</button>
                                 <span *ngIf="order.status !== 'InProgress'" class="text-muted">Not cancellable</span>
                             </td>
                         </tr>

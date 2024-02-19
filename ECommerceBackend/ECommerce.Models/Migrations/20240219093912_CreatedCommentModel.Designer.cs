@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Models.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240212062822_Initial")]
-    partial class Initial
+    [Migration("20240219093912_CreatedCommentModel")]
+    partial class CreatedCommentModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,36 @@ namespace ECommerce.Models.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("ECommerce.Models.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductRatingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductRatingId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("ECommerce.Models.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -80,6 +110,16 @@ namespace ECommerce.Models.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
 
@@ -87,6 +127,8 @@ namespace ECommerce.Models.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -132,8 +174,7 @@ namespace ECommerce.Models.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductPhotoUrl")
                         .IsRequired()
@@ -177,10 +218,6 @@ namespace ECommerce.Models.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -256,13 +293,32 @@ namespace ECommerce.Models.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ECommerce.Models.Models.Comment", b =>
+                {
+                    b.HasOne("ECommerce.Models.Models.ProductRating", "ProductRating")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductRatingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ProductRating");
+                });
+
             modelBuilder.Entity("ECommerce.Models.Models.Order", b =>
                 {
+                    b.HasOne("ECommerce.Models.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("ECommerce.Models.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -327,6 +383,11 @@ namespace ECommerce.Models.Migrations
             modelBuilder.Entity("ECommerce.Models.Models.Product", b =>
                 {
                     b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("ECommerce.Models.Models.ProductRating", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

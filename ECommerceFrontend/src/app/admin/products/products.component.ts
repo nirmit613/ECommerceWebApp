@@ -16,12 +16,14 @@ import { ICartItems } from 'src/app/interfaces/cart-items';
 export class ProductsComponent {
   public productList!:IProduct[];
   public showAddButton:Boolean = false;
+  productRatings: any;
 
 
   constructor(private productService:ProductService,private toast:NgToastService,private router:Router,public dialog: MatDialog,private authService:AuthenticationService) {}
   ngOnInit(): void {
     this.checkUserRole();
     this.getProducts();
+    this.loadProductRatings();
   }
   public getProducts():void{
     this.productService.getProducts().subscribe({
@@ -67,6 +69,14 @@ export class ProductsComponent {
           quantity:0,
           productCategories:[],
 
+        },
+        user:{
+          id: userId,
+          name: '',
+          email: '',
+          password: '',
+          mobileNumber: '',
+          role: ''
         }
       };
 
@@ -109,6 +119,16 @@ public addProduct(): void {
         this.getProducts();
       }
     });
+  }
+  loadProductRatings() {
+    this.productService.getAllProductsAverageRating().subscribe(
+      (ratings) => {
+        this.productRatings = ratings;
+      },
+      (error) => {
+        console.error('Error fetching product ratings:', error);
+      }
+    );
   }
 }
  

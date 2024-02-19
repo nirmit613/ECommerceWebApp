@@ -20,7 +20,7 @@ namespace ECommerce.Models.Repository
         #region Methods
         public IEnumerable<Order> GetOrders()
         {
-            return _context.Orders.ToList();
+            return _context.Orders.Include(o=>o.User).Include(o=>o.Product).ToList();
         }
 
         public Order GetOrderById(int id)
@@ -29,15 +29,28 @@ namespace ECommerce.Models.Repository
         }
         public IEnumerable<Order> GetOrderByUserId(int userId)
         {
-            return _context.Orders.Include(o=>o.User).Where(o => o.UserId == userId).ToList();
+            return _context.Orders.Include(o=>o.User).Include(o=>o.Product).Where(o => o.UserId == userId).ToList();
         }
-        public int PlaceOrder(Order order)
+        public List<Order> PlaceOrder(List<Order> orders)
         {
-            order.OrderDate = DateTime.Now;
-            order.Status = "InProgress";
-            _context.Orders.Add(order);
-            _context.SaveChanges();
-            return order.Id;
+            List<Order> placedOrders = new List<Order>();
+
+            foreach (Order order in orders)
+            {
+                var product = _context.Products.Find(order.ProductId);
+                if (product == null || product.Quantity < order.Quantity)
+                {
+                    throw new Exception($"Product with ID {order.ProductId} is not available or insufficient quantity.");
+                }
+
+                order.OrderDate = DateTime.Now;
+                order.Status = "InProgress";
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+                placedOrders.Add(order);
+            }
+
+            return placedOrders;
         }
 
         public bool CancelOrder(Order order)
@@ -68,6 +81,8 @@ namespace ECommerce.Models.Repository
             _context.SaveChanges();
             return true;
         }
+
+      
     }
     #endregion
 }

@@ -12,6 +12,10 @@ namespace ECommerce.Models.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
         public User User { get; set; }
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+        public int Quantity {  get; set; }
 
         [Required(ErrorMessage = "Order date is required")]
         public DateTime OrderDate { get; set; }

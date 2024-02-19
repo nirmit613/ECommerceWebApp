@@ -47,7 +47,7 @@ export class ProductService {
   emptyCart(userId: number): Observable<any> {
     return this.http.delete<any>(`${environment.baseUrl}cart/empty/${userId}`);
   }
-  placeOrder(order: IOrder): Observable<any> {
+  placeOrder(order: IOrder[]): Observable<any> {
     return this.http.post<any>(`${environment.baseUrl}orders`, order);
 }
 getMyOrders(userId: number): Observable<any> {
@@ -57,5 +57,36 @@ getMyOrders(userId: number): Observable<any> {
 cancelOrder(orderId: number): Observable<any> {
   const url = `${environment.baseUrl}orders/${orderId}/cancel`;
   return this.http.put(url,orderId);
+}
+completeOrder(orderId: number): Observable<any> {
+  return this.http.put<any>(`${environment.baseUrl}orders/${orderId}/complete`, orderId);
+}
+
+getProductRatingById(id: number): Observable<any> {
+  return this.http.get(`${environment.baseUrl}rating/id?id=${id}`);
+}
+
+getRatingsByProductId(productId: number): Observable<any> {
+  return this.http.get(`${environment.baseUrl}rating/product/${productId}`);
+}
+
+addProductRating(ratingData: any): Observable<any> {
+  return this.http.post(`${environment.baseUrl}rating`, ratingData);
+}
+
+updateProductRating(ratingId: number): Observable<any> {
+  return this.http.put(`${environment.baseUrl}rating/${ratingId}`, ratingId);
+}
+
+deleteProductRating(ratingId: number): Observable<any> {
+  return this.http.delete(`${environment.baseUrl}rating/${ratingId}`);
+}
+
+getAverageProductRating(productId: number): Observable<any> {
+  const url = `${environment.baseUrl}rating/average/${productId}`;
+  return this.http.get<any>(url);
+}
+getAllProductsAverageRating(): Observable<number> {
+  return this.http.get<number>(`${environment.baseUrl}rating/average/all`);
 }
 }

@@ -22,7 +22,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    SharedModule
+    SharedModule,
+    
     
   ],
   providers: [],

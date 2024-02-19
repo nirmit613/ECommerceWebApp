@@ -86,13 +86,19 @@ export class CartComponent {
 }
 
 public placeOrder() {
-  const order: IOrder = {
+  const order: IOrder[] = this.cartItems.map(cart=>{
+  return  {
       id: 0, 
       userId: this.userId, 
       orderDate: '',
+      productId: cart.productId,
+      quantity:cart.quantity,
       totalAmount: this.getTotalCartPrice(), 
-      status: ''
+      status: '',
+      product:cart.product,
+      user:cart.user
   };
+  })
 
   this.productService.placeOrder(order).subscribe({
       next: (response) => {

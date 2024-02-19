@@ -29,7 +29,11 @@ namespace ECommerce.Services.AutoMapperProfile
             #endregion
             #region Orders
             CreateMap<AddOrderDTO, Order>();
+            #endregion
 
+            #region ProductRatings
+            CreateMap<AddProductRatingDTO, ProductRating>();
+            CreateMap<UpdateProductRatingDTO, ProductRating>();
             #endregion
 
         }

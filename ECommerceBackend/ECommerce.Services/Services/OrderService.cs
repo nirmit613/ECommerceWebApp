@@ -203,20 +203,34 @@ namespace ECommerce.Services.Services
             return response;
         }
 
-        public ResponseDTO PlaceOrder(AddOrderDTO order)
+        public ResponseDTO PlaceOrder(List<AddOrderDTO> orders)
         {
             var response = new ResponseDTO();
             try
             {
-                var newOrder = _mapper.Map<Order>(order);
-                var orderId = _orderRepository.PlaceOrder(newOrder);
-                if (orderId > 0)
+                List<Order> newOrders = new List<Order>();
+
+                foreach (var orderDTO in orders)
+                {
+                    var newOrder = _mapper.Map<Order>(orderDTO);
+                    newOrders.Add(newOrder);
+                }
+
+                var placedOrders = _orderRepository.PlaceOrder(newOrders);
+
+                if (placedOrders != null && placedOrders.Any())
                 {
                     response.Status = 200;
-                    response.Message = "Order place successfully";
-                    response.Data = newOrder;
+                    response.Message = "Orders placed successfully";
+                    response.Data = placedOrders;
                 }
-            }catch (Exception e)
+                else
+                {
+                    response.Status = 400;
+                    response.Message = "Failed to place orders";
+                }
+            }
+            catch (Exception e)
             {
                 response.Status = 500;
                 response.Message = "Internal Server Error";
@@ -224,6 +238,7 @@ namespace ECommerce.Services.Services
             }
             return response;
         }
+
 
         #endregion
     }

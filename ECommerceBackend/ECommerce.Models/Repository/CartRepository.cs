@@ -50,7 +50,7 @@ namespace ECommerce.Models.Repository
         }
         public IEnumerable<CartItem> GetCartItemByUserId(int userId)
         {
-            return _context.CartItems.Include(d=>d.Product).Where(item => item.UserId == userId).ToList();
+            return _context.CartItems.Include(d=>d.Product).Include(d=>d.User).Where(item => item.UserId == userId).ToList();
         }
         public CartItem GetCartItem(int userId, int productId)
         {
