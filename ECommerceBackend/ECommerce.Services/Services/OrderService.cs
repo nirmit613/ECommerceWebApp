@@ -86,7 +86,7 @@ namespace ECommerce.Services.Services
 
                 response.Status = 200;
                 response.Message = "Ok";
-                response.Data = orders;
+                response.Data = orders.Reverse();
             }
             catch (Exception e)
             {

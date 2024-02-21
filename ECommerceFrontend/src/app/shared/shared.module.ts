@@ -9,9 +9,6 @@ import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
-
-
-
 @NgModule({
   declarations: [
     LandingPageComponent,

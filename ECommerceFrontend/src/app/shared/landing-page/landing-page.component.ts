@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { IProduct } from 'src/app/interfaces/product';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,8 +12,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LandingPageComponent {
   userEmail!: string;
+  products: IProduct[] = [];
+  filteredProducts: IProduct[] = [];
+  searchTerm: string = '';
 
-  constructor(private authService: AuthenticationService,private router:Router,private toast:NgToastService) {}
+  constructor(private authService: AuthenticationService,private router:Router,private toast:NgToastService,private productService: ProductService) {}
   
   ngOnInit(): void {
     const userData = localStorage.getItem('UserData');
@@ -20,12 +25,9 @@ export class LandingPageComponent {
       this.userEmail = user.email;
     }
   }
-  
-
   public isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
-
   public logout(): void {
     if (confirm('Are you sure you want to log out?')) {
       this.authService.logout(); 
@@ -40,5 +42,13 @@ export class LandingPageComponent {
       this.router.navigate(['/landing/cart']);
     }
   }
-
+  searchProducts(): void {
+    if (!this.searchTerm.trim()) {
+      this.filteredProducts = [...this.products];
+    } else {
+      this.filteredProducts = this.products.filter(product =>
+        product.productName.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
 }

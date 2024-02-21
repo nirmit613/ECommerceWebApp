@@ -7,6 +7,7 @@ namespace ECommerce.Services.Interfaces
     {
         ResponseDTO GetProductRatingById(int id);
         ResponseDTO GetProductRatingsByProductId(int productId);
+        ResponseDTO GetProductRatingsByUserId(int userId);
         ResponseDTO AddProductRating(AddProductRatingDTO productRating);
         ResponseDTO UpdateProductRating(UpdateProductRatingDTO productRating);
         ResponseDTO DeleteProductRating(int id);

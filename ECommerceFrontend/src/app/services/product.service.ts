@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { IProduct } from '../interfaces/product';
 import { ICartItems } from '../interfaces/cart-items';
 import { IOrder } from '../interfaces/order';
+import { IRating } from '../interfaces/rating';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class ProductService {
   public getProducts():Observable<any>{
     return this.http.get<any>(`${environment.baseUrl}products/Products`);
   }
-  public getProductsByCategoryId(categoryId: number): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${environment.baseUrl}products/categoryId?categoryId=${categoryId}`);
+  public getProductsByCategoryId(categoryId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}products/categoryId?categoryId=${categoryId}`);
   }
-
+  
   public addProduct(product:any):Observable<any>{
     return this.http.post(`${environment.baseUrl}products/product`,product);
   }
@@ -69,13 +70,16 @@ getProductRatingById(id: number): Observable<any> {
 getRatingsByProductId(productId: number): Observable<any> {
   return this.http.get(`${environment.baseUrl}rating/product/${productId}`);
 }
+getRatingsByUserId(userId: number): Observable<any> {
+  return this.http.get(`${environment.baseUrl}rating/products/${userId}`);
+}
 
 addProductRating(ratingData: any): Observable<any> {
   return this.http.post(`${environment.baseUrl}rating`, ratingData);
 }
 
-updateProductRating(ratingId: number): Observable<any> {
-  return this.http.put(`${environment.baseUrl}rating/${ratingId}`, ratingId);
+updateProductRating(rating:any): Observable<any> {
+  return this.http.put(`${environment.baseUrl}rating`, rating);
 }
 
 deleteProductRating(ratingId: number): Observable<any> {

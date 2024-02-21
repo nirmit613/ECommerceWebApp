@@ -6,5 +6,6 @@ export interface IProduct {
     productPhotoUrl:File | null,
     quantity:number,
     price:number,
+    timesSold:number,
     productCategories:IProductCategory[]
 }

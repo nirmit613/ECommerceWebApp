@@ -2,9 +2,10 @@ import { IProduct } from "./product"
 import { IUser } from "./user"
 
 export interface IOrder {
+    productRating: any
     id:number,
     userId:number,
-    productId:number | null,
+    productId:number ,
     quantity:number,
     totalAmount:number,
     status:string,

@@ -96,7 +96,8 @@ public placeOrder() {
       totalAmount: this.getTotalCartPrice(), 
       status: '',
       product:cart.product,
-      user:cart.user
+      user:cart.user,
+      productRating:0
   };
   })
 

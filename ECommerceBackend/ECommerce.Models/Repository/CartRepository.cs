@@ -25,21 +25,60 @@ namespace ECommerce.Models.Repository
         }
         public int AddToCart(CartItem cartItem)
         {
+            //_context.Add(cartItem);
+            //if (_context.SaveChanges() > 0)
+            //    return cartItem.Id;
+            //else
+            //    return 0;
+            var product = _context.Products.FirstOrDefault(p => p.Id == cartItem.ProductId);
+            if (product == null)
+            {
+                return 0;
+            }
+
+            if (cartItem.Quantity > product.Quantity)
+            {
+                return 0;
+            }
+
             _context.Add(cartItem);
             if (_context.SaveChanges() > 0)
+            {
                 return cartItem.Id;
+            }
             else
+            {
                 return 0;
+            }
         }
         public bool UpdateCartItem(CartItem cartItem)
         {
-            var existingProduct = _context.CartItems.Find(cartItem.Id);
-            if (existingProduct != null)
+            //var existingProduct = _context.CartItems.Find(cartItem.Id);
+            //if (existingProduct != null)
+            //{
+            //    existingProduct.Quantity = cartItem.Quantity;
+
+            //    _context.Entry(existingProduct).State = EntityState.Modified;
+            //}
+            //return _context.SaveChanges() > 0;
+            var existingCartItem = _context.CartItems.Find(cartItem.Id);
+            if (existingCartItem == null)
             {
-                existingProduct.Quantity = cartItem.Quantity;
-                
-                _context.Entry(existingProduct).State = EntityState.Modified;
+                return false;
             }
+
+            var product = _context.Products.FirstOrDefault(p => p.Id == existingCartItem.ProductId);
+            if (product == null)
+            {
+                return false;
+            }
+            if (cartItem.Quantity > product.Quantity)
+            {
+                return false;
+            }
+
+            existingCartItem.Quantity = cartItem.Quantity;
+            _context.Entry(existingCartItem).State = EntityState.Modified;
             return _context.SaveChanges() > 0;
         }
         public bool DeleteCartItem(CartItem cartItem)

@@ -1,9 +1,6 @@
 ﻿using ECommerce.Services.DTO;
 using ECommerce.Services.Interfaces;
-using ECommerce.Services.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace ECommerce.Controllers
 {

@@ -30,6 +30,11 @@ namespace ECommerce.Controllers
         {
             return Ok(_productRatingService.GetProductRatingsByProductId(productId));
         }
+        [HttpGet("products/{userId}")]
+        public IActionResult GetProductRatingsByUserId(int userId)
+        {
+            return Ok(_productRatingService.GetProductRatingsByUserId(userId));
+        }
         [HttpGet("average/{productId}")]
         public IActionResult GetAverageProductRating(int productId)
         {

@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'landing', component: LandingPageComponent },
   { path: 'landing/cart', component: CartComponent },
   {path:'landing/my-orders',component:MyOrdersComponent},
-  { path: 'landing/men', component: LandingPageComponent },
-  { path: 'landing/women', component: LandingPageComponent },
-  { path: 'landing/kids', component: LandingPageComponent },
+  { path: 'landing/men/:category', component: LandingPageComponent },
+  { path: 'landing/women/:category', component: LandingPageComponent },
+  { path: 'landing/kids/:category', component: LandingPageComponent },
   {
     path: 'auth',
     loadChildren: () =>

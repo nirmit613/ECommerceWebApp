@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -16,20 +16,48 @@ import { ICartItems } from 'src/app/interfaces/cart-items';
 export class ProductsComponent {
   public productList!:IProduct[];
   public showAddButton:Boolean = false;
-  productRatings: any;
+  public productRatings: any;
+  constructor(private productService:ProductService,private toast:NgToastService,private router:Router,public dialog: MatDialog,private authService:AuthenticationService,private route: ActivatedRoute) {}
 
-
-  constructor(private productService:ProductService,private toast:NgToastService,private router:Router,public dialog: MatDialog,private authService:AuthenticationService) {}
   ngOnInit(): void {
     this.checkUserRole();
-    this.getProducts();
     this.loadProductRatings();
+    this.route.params.subscribe(params => {
+      const categoryId = +params['category'];
+      if (!isNaN(categoryId)) {
+        this.getProductsByCategoryId(categoryId);
+      } else {
+        this.getProducts(); 
+      }
+    });
   }
+  isCategoryPage(): boolean {
+    return this.route.snapshot.params.hasOwnProperty('category');
+  }
+  navigateToAllProducts(): void {
+    this.router.navigate(['/landing']);
+  }
+
+  ngAfterViewInit(): void {
+    this.subscribeToRouteParams();
+  }
+
+  private subscribeToRouteParams(): void {
+    this.route.params.subscribe(params => {
+      const categoryId = +params['category'];
+      if (!isNaN(categoryId)) {
+        this.getProductsByCategoryId(categoryId);
+      } else {
+        console.log('Category parameter is not defined or is invalid.');
+      }
+    });
+  }
+  
   public getProducts():void{
     this.productService.getProducts().subscribe({
       next: (res) => {
         console.log(res)
-        this.productList = res.data;
+        this.productList = res.data.sort((a:IProduct, b:IProduct) => b.timesSold - a.timesSold);
       },
       error: (error) => {
         this.toast.error({detail:"Error Message",summary:"Some error occur while fetching the products!!",duration:3000})
@@ -67,6 +95,7 @@ export class ProductsComponent {
           productPhotoUrl: null,
           price:0,
           quantity:0,
+          timesSold:0,
           productCategories:[],
 
         },
@@ -104,6 +133,7 @@ public addProduct(): void {
       productPhotoUrl: null,
       price:0,
       quantity:0,
+      timesSold:0,
       productCategories:[],
 
     };
@@ -129,6 +159,23 @@ public addProduct(): void {
         console.error('Error fetching product ratings:', error);
       }
     );
+  }
+  getProductsByCategoryId(categoryId: number): void {
+    debugger
+    this.productService.getProductsByCategoryId(categoryId).subscribe(
+      {
+        next: (res) => {
+          console.log(res)
+          this.productList = res.data;
+        },
+        error: (error) => {
+          this.toast.error({detail:"Error Message",summary:"Some error occur while fetching the products!!",duration:3000})
+        },
+      }
+    );
+  }
+  onCategoryClick(categoryId: number): void {
+    this.getProductsByCategoryId(categoryId);
   }
 }
  

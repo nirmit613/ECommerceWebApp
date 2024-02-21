@@ -80,6 +80,34 @@ namespace ECommerce.Services.Services
             return response;
         }
 
+        public ResponseDTO GetProductRatingsByUserId(int userId)
+        {
+            var response = new ResponseDTO();
+            try
+            {
+                var productRatings = _productRatingRepository.GetProductRatingByUserId(userId);
+                if (productRatings == null || !productRatings.Any())
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "Product ratings not found for the specified user Id";
+                    return response;
+                }
+                var productRatingsData = _mapper.Map<List<ProductRating>>(productRatings);
+
+                response.Status = 200;
+                response.Message = "Ok";
+                response.Data = productRatingsData;
+            }
+            catch (Exception e)
+            {
+                response.Status = 500;
+                response.Message = "Internal Server Error";
+                response.Error = e.Message;
+            }
+            return response;
+        }
+
         public ResponseDTO AddProductRating(AddProductRatingDTO productRating)
         {
             var response = new ResponseDTO();

@@ -28,8 +28,57 @@ namespace ECommerce.Services.Services
         public ResponseDTO AddToCart(int userId, int productId, int quantity)
         {
             var response = new ResponseDTO();
+            //try
+            //{
+            //    var existingCartItem = _cartRepository.GetCartItem(userId, productId);
+
+            //    if (existingCartItem != null)
+            //    {
+            //        existingCartItem.Quantity += quantity;
+            //        _cartRepository.UpdateCartItem(existingCartItem);
+            //    }
+            //    else
+            //    {
+            //        var newCartItem = new CartItem
+            //        {
+            //            UserId = userId,
+            //            ProductId = productId,
+            //            Quantity = quantity
+            //        };
+            //        _cartRepository.AddToCart(newCartItem);
+            //    }
+            //    response.Status = 200;
+            //    response.Message = "Item added to cart successfully.";
+            //}
             try
             {
+                var product = _productRepository.GetProductById(productId);
+
+                if (product == null)
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "Product not found";
+                    return response;
+                }
+
+                if (quantity <= 0)
+                {
+                    response.Status = 400;
+                    response.Message = "Invalid Quantity";
+                    response.Error = "Quantity must be greater than zero.";
+                    return response;
+                }
+
+                // Check if the requested quantity is available
+                if (product.Quantity < quantity)
+                {
+                    response.Status = 400;
+                    response.Message = "Insufficient Quantity";
+                    response.Error = $"Only {product.Quantity} units of {product.ProductName} are available.";
+                    return response;
+                }
+
                 var existingCartItem = _cartRepository.GetCartItem(userId, productId);
 
                 if (existingCartItem != null)
@@ -47,6 +96,7 @@ namespace ECommerce.Services.Services
                     };
                     _cartRepository.AddToCart(newCartItem);
                 }
+
                 response.Status = 200;
                 response.Message = "Item added to cart successfully.";
             }
@@ -162,18 +212,69 @@ namespace ECommerce.Services.Services
 
         public ResponseDTO UpdateCartItem(UpdateCartItemDTO cartItem)
         {
+            //var response = new ResponseDTO();
+            //try
+            //{
+            //    var CartItemById = _cartRepository.GetCartItemById(cartItem.Id);
+            //    if (CartItemById == null)
+            //    {
+            //        response.Status = 404;
+            //        response.Message = "Not Found";
+            //        response.Error = "Item not found";
+            //        return response;
+            //    }
+            //    var updateFlag = _cartRepository.UpdateCartItem(_mapper.Map<CartItem>(cartItem));
+            //    if (updateFlag)
+            //    {
+            //        response.Status = 204;
+            //        response.Message = "Updated";
+            //    }
+            //    else
+            //    {
+            //        response.Status = 400;
+            //        response.Message = "Not Updated";
+            //        response.Error = "Could not update Cart item";
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    response.Status = 500;
+            //    response.Message = "Internal Server Error";
+            //    response.Error = e.Message;
+            //}
+            //return response;
             var response = new ResponseDTO();
             try
             {
-                var CartItemById = _cartRepository.GetCartItemById(cartItem.Id);
-                if (CartItemById == null)
+                var existingCartItem = _cartRepository.GetCartItemById(cartItem.Id);
+                if (existingCartItem == null)
                 {
                     response.Status = 404;
                     response.Message = "Not Found";
-                    response.Error = "Item not found";
+                    response.Error = "Cart item not found";
                     return response;
                 }
-                var updateFlag = _cartRepository.UpdateCartItem(_mapper.Map<CartItem>(cartItem));
+
+                // Check if the updated quantity exceeds the available quantity of the product
+                var product = _productRepository.GetProductById(existingCartItem.ProductId);
+                if (product == null)
+                {
+                    response.Status = 404;
+                    response.Message = "Not Found";
+                    response.Error = "Product not found";
+                    return response;
+                }
+
+                if (cartItem.Quantity > product.Quantity)
+                {
+                    response.Status = 400;
+                    response.Message = "Invalid Quantity";
+                    response.Error = "The requested quantity exceeds the available stock.";
+                    return response;
+                }
+                existingCartItem.Quantity = cartItem.Quantity;
+                var updateFlag = _cartRepository.UpdateCartItem(_mapper.Map<CartItem>(existingCartItem));
+
                 if (updateFlag)
                 {
                     response.Status = 204;

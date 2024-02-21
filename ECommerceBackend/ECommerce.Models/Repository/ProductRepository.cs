@@ -40,18 +40,35 @@ namespace ECommerce.Models.Repository
 
         public bool UpdateProduct(Product product)
         {
-            var existingProduct = _context.Products.Find(product.Id);
-            if (existingProduct != null)
-            {
-                existingProduct.ProductName = product.ProductName;
-                existingProduct.ProductPhotoUrl = product.ProductPhotoUrl;
-                existingProduct.Quantity = product.Quantity;
-                existingProduct.Price = product.Price;
-                existingProduct.ProductCategories = product.ProductCategories;
+            //var existingProduct = _context.Products.Find(product.Id);
+            //if (existingProduct != null)
+            //{
+            //    existingProduct.ProductName = product.ProductName;
+            //    existingProduct.ProductPhotoUrl = product.ProductPhotoUrl;
+            //    existingProduct.Quantity = product.Quantity;
+            //    existingProduct.Price = product.Price;
+            //    existingProduct.ProductCategories = product.ProductCategories;
 
-                _context.Entry(existingProduct).State = EntityState.Modified;
+            //    _context.Entry(existingProduct).State = EntityState.Modified;
+            //}
+            //return _context.SaveChanges()>0;
+            var existingProduct = _context.Products.Find(product.Id);
+            if (existingProduct == null)
+            {
+                return false;
             }
-            return _context.SaveChanges()>0;
+            int quantityDifference = product.Quantity - existingProduct.Quantity;
+
+            if (existingProduct.Quantity + quantityDifference >= 0)
+            {
+                existingProduct.Quantity += quantityDifference;
+                _context.Entry(existingProduct).State = EntityState.Modified;
+                return _context.SaveChanges() > 0;
+            }
+            else
+            {
+                return false;
+            }
         }
        public bool DeleteProduct(Product product)
         {

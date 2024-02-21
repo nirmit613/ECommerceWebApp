@@ -46,6 +46,11 @@ namespace ECommerce.Models.Repository
                 order.OrderDate = DateTime.Now;
                 order.Status = "InProgress";
                 _context.Orders.Add(order);
+
+                product.Quantity -= order.Quantity;
+                product.TimesSold += order.Quantity;
+                _context.Products.Update(product);
+
                 _context.SaveChanges();
                 placedOrders.Add(order);
             }
@@ -55,13 +60,29 @@ namespace ECommerce.Models.Repository
 
         public bool CancelOrder(Order order)
         {
+            //    var orders = _context.Orders.Find(order.Id);
+            //    if (orders != null)
+            //    {
+            //        orders.Status = "Cancelled";
+            //        _context.Entry(orders).State = EntityState.Modified;
+            //    }
+            //    return _context.SaveChanges() > 0;
+
             var orders = _context.Orders.Find(order.Id);
             if (orders != null)
             {
+                var product = _context.Products.Find(orders.ProductId);
+                if (product != null)
+                {
+                    product.Quantity += orders.Quantity;
+                    product.TimesSold -= orders.Quantity;
+                    _context.Entry(product).State = EntityState.Modified;
+                }
                 orders.Status = "Cancelled";
                 _context.Entry(orders).State = EntityState.Modified;
+                return _context.SaveChanges() > 0;
             }
-            return _context.SaveChanges() > 0;
+            return false;
         }
 
         public bool CompleteOrder(Order order)

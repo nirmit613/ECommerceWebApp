@@ -28,7 +28,10 @@ namespace ECommerce.Models.Repository
         {
             return _context.ProductRatings.Where(pr => pr.ProductId == productId).ToList();
         }
-
+        public IEnumerable<ProductRating> GetProductRatingByUserId(int userId)
+        {
+            return _context.ProductRatings.Where(pr => pr.UserId == userId).ToList();
+        }
         public int AddProductRating(ProductRating productRating)
         {
             _context.Add(productRating);
@@ -90,7 +93,6 @@ namespace ECommerce.Models.Repository
             }
             catch (Exception ex)
             {
-                // Handle exception or log error
                 throw ex;
             }
         }
